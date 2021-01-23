@@ -1,0 +1,48 @@
+.btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+textarea {
+  resize: none;
+  max-height: 50px;
+}
+
+.panel {
+  min-height: 235px;
+}
+
+.panel-heading {
+  height: 55px;
+}
+
+.panel-body {
+  height: calc(235px - 54px);
+  padding-bottom: 0;
+}
+
+.panel-heading p {
+  line-height: 35px;
+}
+
+.status-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.status-wrapper .form-control {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  margin-right: 5px;
+}
+
+.status-wrapper label {
+  margin: 0;
+}
+
+.note-done {
+  filter: brightness(0.95);
+  border-left: solid 5px #61eb34;
+}

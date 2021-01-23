@@ -1,0 +1,38 @@
+<form [formGroup]="noteFilterForm">
+  <h3>Find notes...</h3>
+  <div class="filter-wrapper">
+    <div class="form-group" style="width: 40%">
+      <input
+        type="text"
+        id="query"
+        formControlName="query"
+        class="form-control"
+        placeholder="Find by query..."
+        (input)="onQueryChange()"
+      />
+    </div>
+    <div
+      class="form-group"
+      style="
+        width: 30%;
+        display: flex;
+        justify-content: space-around;
+        align-items: baseline;
+      "
+    >
+      <label for="description">Status</label>
+      <select
+        id="status"
+        formControlName="status"
+        id="status"
+        class="form-control"
+        style="width: 60%"
+        (change)="onStatusChange()"
+      >
+        <option value="all">All</option>
+        <option value="true">Done</option>
+        <option value="false">To do</option>
+      </select>
+    </div>
+  </div>
+</form>

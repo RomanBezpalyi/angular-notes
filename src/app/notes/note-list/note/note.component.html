@@ -1,0 +1,73 @@
+<form
+  class="panel panel-default"
+  [formGroup]="noteEditForm"
+  (ngSubmit)="onSave()"
+  [ngClass]="isDone? 'note-done' : null"
+>
+  <header class="panel-heading">
+    <p *ngIf="!isEditMode">
+      {{ title }}
+    </p>
+    <div *ngIf="isEditMode">
+      <input
+        [(value)]="title"
+        id="newTitle"
+        formControlName="newTitle"
+        class="form-control"
+      />
+      <span
+        *ngIf="
+          !noteEditForm.get('newTitle').valid &&
+          noteEditForm.get('newTitle').touched
+        "
+        class="help-block"
+      >
+        <span *ngIf="noteEditForm.get('newTitle').errors['required']"
+          >This field is required!</span
+        >
+      </span>
+    </div>
+  </header>
+  <body class="panel-body">
+    <span *ngIf="!isEditMode">
+      {{ description }}
+    </span>
+    <div *ngIf="isEditMode">
+      <textarea
+        [(value)]="description"
+        rows="2"
+        class="form-control"
+        id="newDescription"
+        formControlName="newDescription"
+      ></textarea>
+    </div>
+    <div style="justify-content: center; margin: 10px 0" *ngIf="isEditMode">
+      <button class="btn-success btn" type="submit">Save</button>
+    </div>
+  </body>
+  <div class="btn-wrapper">
+    <button
+      class="btn-primary btn"
+      (click)="!isEditMode ? onEdit() : onClose()"
+      type="button"
+    >
+      {{ isEditMode ? "Close" : "Edit" }}
+    </button>
+    <div class="status-wrapper">
+      <input
+      (value)="isDone"
+      id="newIsDone"
+      formControlName="newIsDone"
+      class="form-control"
+      type="checkbox"
+      (click)="onStatusChange()"
+    />
+    <label for="newIsDone" [ngClass]="isDone ? 'text-success' : null ">
+      {{ isDone ? "Done" : "To do" }}
+    </label>
+    </div>
+    <button class="btn-danger btn" type="button" (click)="onDelete()">
+      Delete
+    </button>
+  </div>
+</form>

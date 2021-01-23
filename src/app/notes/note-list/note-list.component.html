@@ -1,0 +1,9 @@
+<app-note
+  *ngFor="let note of notesToRender"
+  [title]="note.title"
+  [description]="note.description"
+  [id]="note.id"
+  [isDone]="note.isDone"
+  class="col-xs-4"
+>
+</app-note>

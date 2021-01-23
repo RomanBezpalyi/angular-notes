@@ -1,0 +1,33 @@
+<form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      id="title"
+      formControlName="title"
+      class="form-control"
+    />
+    <span
+      *ngIf="!noteForm.get('title').valid && noteForm.get('title').touched"
+      class="help-block"
+    >
+      <span *ngIf="noteForm.get('title').errors['required']"
+        >This field is required!</span
+      >
+    </span>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea
+      type="text"
+      id="description"
+      formControlName="description"
+      class="form-control"
+      rows="5"
+    ></textarea>
+  </div>
+
+  <button class="btn btn-primary" [disabled]="!noteForm.valid" type="submit">
+    Submit
+  </button>
+</form>
