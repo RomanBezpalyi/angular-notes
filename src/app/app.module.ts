@@ -5,31 +5,25 @@ import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule } from "@ngrx/effects";
 
-import { ReactiveFormsModule } from "@angular/forms";
-
 import { environment } from "../environments/environment";
 
-import { AppComponent } from "./app.component";
-import { NoteFormComponent } from "./notes/note-form/note-form.component";
-import { NoteListComponent } from "./notes/note-list/note-list.component";
-import { NoteComponent } from "./notes/note-list/note/note.component";
+import { AppRoutingModule } from "./app-routing.module";
 
 import * as fromApp from "./store";
 import { NotesEffects } from "./notes/store";
-import { NoteFilterComponent } from './notes/note-filter/note-filter.component';
+
+import { AuthComponent } from './auth/auth.component';
+import { AppComponent } from "./app.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    NoteFormComponent,
-    NoteListComponent,
-    NoteComponent,
-    NoteFilterComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule,
+    AppRoutingModule,
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([NotesEffects]),
     StoreDevtoolsModule.instrument({logOnly: environment.production}),

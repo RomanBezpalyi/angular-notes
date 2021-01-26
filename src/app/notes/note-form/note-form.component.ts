@@ -15,6 +15,7 @@ export class NoteFormComponent implements OnInit {
   note = {
     title: "",
     description: "",
+    isDone: false
   };
 
   constructor(private store: Store<fromApp.AppState>) {}
