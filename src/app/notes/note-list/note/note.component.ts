@@ -66,10 +66,6 @@ export class NoteComponent implements OnInit, OnDestroy {
     this.store.dispatch(new NotesActions.PutNoteToEditMode(this.id));
   }
 
-  onChange($event) {
-    console.log($event);
-  }
-
   onSave() {
     const newNote = {
       title: this.noteEditForm.get("newTitle").value,

@@ -12,11 +12,6 @@ import * as NotesActions from "../store";
 })
 export class NoteFormComponent implements OnInit {
   noteForm: FormGroup;
-  note = {
-    title: "",
-    description: "",
-    isDone: false
-  };
 
   constructor(private store: Store<fromApp.AppState>) {}
 
@@ -31,16 +26,14 @@ export class NoteFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    for (let key in this.note) {
-      if (this.note.hasOwnProperty(key)) {
-        if (this.noteForm.get(key)) {
-          this.note[key] = this.noteForm.get(key).value;
-        }
-      }
+  onNoteFormSubmit() {
+    const note = {
+      title: this.noteForm.get('title').value,
+      description: this.noteForm.get('description').value,
+      isDone: false
     }
 
-    this.store.dispatch(new NotesActions.AddNoteStart(this.note));
+    this.store.dispatch(new NotesActions.AddNoteStart(note));
     this.noteForm.reset();
   }
 }
