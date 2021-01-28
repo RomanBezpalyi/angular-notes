@@ -16,9 +16,10 @@ import { NotesEffects } from './notes/store';
 import { AuthEffects } from './auth/store';
 
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './core/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

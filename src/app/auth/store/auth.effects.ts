@@ -158,7 +158,7 @@ export class AuthEffects {
     })
   );
 
-  @Effect()
+  @Effect({ dispatch: false })
   authLogout = this.actions$.pipe(
     ofType(AuthActions.LOGOUT),
     tap(() => {

@@ -1,9 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { AuthComponent } from './auth/auth.component';
-import { AuthModule } from './auth/auth.module';
-import { NotesComponent } from './notes/notes.component';
-import { NotesModule } from './notes/notes.module';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/notes' },
@@ -14,8 +10,6 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules }),
-    NotesModule,
-    AuthModule,
   ],
   exports: [RouterModule],
 })

@@ -11,7 +11,7 @@ export const searchNotesByFilters = (
     filteredNotes = filteredNotes.filter((note: Note) => {
       return (
         note.title.toLowerCase().includes(query.toLowerCase()) ||
-        note.description.toLowerCase().includes(query.toLowerCase())
+        note.description?.toLowerCase().includes(query.toLowerCase())
       );
     });
   }
