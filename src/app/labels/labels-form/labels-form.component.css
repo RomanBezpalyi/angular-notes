@@ -1,0 +1,19 @@
+.form-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-wrapper:not(.inline) > button {
+  width: 15%;
+  height: 34px;
+  margin-top: 8px;
+}
+
+.help-block {
+  position: absolute;
+}
+
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }

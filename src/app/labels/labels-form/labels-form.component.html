@@ -1,0 +1,39 @@
+<form [formGroup]="labelForm" (ngSubmit)="onNoteFormSubmit()">
+  <h4>Create a Label</h4>
+  <div class="form-wrapper">
+    <div class="form-group" style="position: relative;">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        class="form-control"
+      />
+      <span
+        *ngIf="!labelForm.get('title').valid && labelForm.get('title').touched"
+        class="help-block"
+      >
+        <span *ngIf="labelForm.get('title').errors['required']"
+          >This field is required!</span
+        >
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="color">Color</label>
+      <div class="form-wrapper inline">
+        <input
+          type="text"
+          id="color"
+          formControlName="color"
+          class="form-control"
+          style="width: 60%;"
+        />
+        <button class="btn btn-primary" type="button">Generate</button>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" [disabled]="!labelForm.valid" type="submit">
+      Submit
+    </button>
+  </div>
+</form>

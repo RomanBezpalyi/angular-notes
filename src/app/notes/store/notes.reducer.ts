@@ -34,7 +34,7 @@ export function notesReducer(
       return {
         ...state,
         isLoading: false,
-        notes: [...state.notes, ...action.payload],
+        notes: [...action.payload],
       };
     case NotesActions.ADD_NOTE_SUCCESS:
       return {
