@@ -10,7 +10,11 @@ import { LabelsComponent } from './labels.component';
 import { AuthGuard } from '../auth/auth.guard';
 
 @NgModule({
-  declarations: [LabelsComponent, LabelsTableComponent, LabelsFormComponent],
+  declarations: [
+    LabelsComponent,
+    LabelsTableComponent,
+    LabelsFormComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

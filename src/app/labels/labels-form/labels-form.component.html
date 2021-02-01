@@ -1,4 +1,4 @@
-<form [formGroup]="labelForm" (ngSubmit)="onNoteFormSubmit()">
+<form [formGroup]="labelForm" (ngSubmit)="onLabelCreate()">
   <h4>Create a Label</h4>
   <div class="form-wrapper">
     <div class="form-group" style="position: relative;">
@@ -18,9 +18,10 @@
         >
       </span>
     </div>
-    <div class="form-group">
+    <div class="form-group" style="position: relative;">
       <label for="color">Color</label>
       <div class="form-wrapper inline">
+        #
         <input
           type="text"
           id="color"
@@ -28,8 +29,20 @@
           class="form-control"
           style="width: 60%;"
         />
-        <button class="btn btn-primary" type="button">Generate</button>
-      </div>
+        <button class="btn btn-primary" (click)="onGenerateColor()" type="button">Generate</button>
+        <span
+        *ngIf="!labelForm.get('color').valid && labelForm.get('color').touched"
+        class="help-block"
+        style="top:100%;"
+      >
+        <span *ngIf="labelForm.get('color').errors['minlength'] || labelForm.get('color').errors['maxlength']"
+          >Please, enter a 6 character hexadecimal color.</span
+        >
+        <span *ngIf="!labelForm.get('color').errors['minlength'] && !labelForm.get('color').errors['maxlength'] && !labelForm.get('color').valid "
+          >Please, enter a valid color.</span
+        >
+      </span>
+    </div>
     </div>
 
     <button class="btn btn-primary" [disabled]="!labelForm.valid" type="submit">

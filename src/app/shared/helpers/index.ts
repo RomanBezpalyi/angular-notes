@@ -1,1 +1,2 @@
-export * from "./searchNotesByFilters";
+export * from './searchNotesByFilters';
+export * from './generateRandomColor';

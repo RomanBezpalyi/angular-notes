@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import * as fromApp from '../../store';
 import * as AuthActions from '../../auth/store';
+import * as LabelsActions from '../../labels/store';
 
 @Component({
   selector: 'app-header',
@@ -27,7 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
-      this.store.dispatch(new AuthActions.Logout())
+    this.store.dispatch(new AuthActions.Logout());
   }
 
   ngOnDestroy() {

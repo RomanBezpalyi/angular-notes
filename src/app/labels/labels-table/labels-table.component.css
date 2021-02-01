@@ -1,0 +1,15 @@
+.action-btn {
+    border: none;
+    background-color: transparent;
+}
+
+.action-btn:hover svg {
+    fill: #2e6da4;
+}
+
+.color-label {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}

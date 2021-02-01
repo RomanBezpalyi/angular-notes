@@ -15,5 +15,9 @@
 }
 
 input.ng-invalid.ng-touched {
-    border: 1px solid red;
-  }
+  border: 1px solid red;
+}
+
+form {
+  padding-bottom: 20px;
+}

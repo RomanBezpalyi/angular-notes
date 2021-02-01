@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import * as fromApp from './store';
 import { NotesEffects } from './notes/store';
 import { AuthEffects } from './auth/store';
+import { LabelsEffects } from './labels/store';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
@@ -25,7 +26,7 @@ import { HeaderComponent } from './core/header/header.component';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([NotesEffects, AuthEffects]),
+    EffectsModule.forRoot([NotesEffects, AuthEffects, LabelsEffects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
     StoreRouterConnectingModule.forRoot(),
     CoreModule,
