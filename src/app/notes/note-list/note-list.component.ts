@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs/operators';
 
 import { Note } from '../models';
+import { Label } from '../../labels/models';
 
 import * as fromApp from '../../store';
 import * as NotesActions from '../store';
@@ -18,12 +19,13 @@ import { searchNotesByFilters } from '../../shared/helpers';
 })
 export class NoteListComponent implements OnInit, OnDestroy {
   hasLabels: boolean;
+  labels: Label[];
   notes: Note[];
-  notesToRender: Note[] = [];
+  notesToRender: any[];
   subscription: Subscription;
   filterSubscription: Subscription;
   labelsSub: Subscription;
-  filters = { query: '', status: '' };
+  filters = { query: '', status: '', label: null };
 
   constructor(private store: Store<fromApp.AppState>) {}
 
@@ -31,13 +33,14 @@ export class NoteListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new LabelsActions.GetLabelsStart());
     this.labelsSub = this.store
       .select('labels')
-      .pipe(
-        map((labelState) => labelState.labels)
-      )
+      .pipe(map((labelState) => labelState.labels))
       .subscribe((labels) => {
         this.hasLabels = !!labels.length;
+        this.labels = labels;
 
-        this.store.dispatch(new NotesActions.GetNotesStart());
+        if (this.notes && !this.notes.length) {
+          this.store.dispatch(new NotesActions.GetNotesStart());
+        }
       });
 
     this.filterSubscription = this.store
@@ -45,6 +48,7 @@ export class NoteListComponent implements OnInit, OnDestroy {
       .subscribe((filters) => {
         this.filters.query = filters.query;
         this.filters.status = filters.status;
+        this.filters.label = filters.label;
 
         if (this.notes) {
           this.applyFilter();
@@ -67,7 +71,12 @@ export class NoteListComponent implements OnInit, OnDestroy {
   }
 
   applyFilter() {
-    const { query, status } = this.filters;
-    this.notesToRender = searchNotesByFilters(this.notes, query, status);
+    const { query, status, label } = this.filters;
+    this.notesToRender = searchNotesByFilters(this.notes, query, status, label).map(
+      (note) => ({
+        ...note,
+        label: this.labels.find((labels) => labels.id === note.label),
+      })
+    );
   }
 }

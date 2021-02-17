@@ -53,38 +53,6 @@ export class LabelsEffects {
     )
   );
 
-  @Effect()
-  updateLabel = this.actions$.pipe(
-    ofType(LabelsActions.UPDATE_LABEL_START),
-    mergeMap((label: LabelsActions.UpdateLabelStart) =>
-      this.http
-        .put(URL + 'labels/' + label.id + '.json', {
-          title: label.newLabel.title,
-          color: label.newLabel.color,
-        })
-        .pipe(
-          map((res: Label) => {
-            return new LabelsActions.UpdateLabelSuccess(label.id, {
-              ...res,
-              id: label.id,
-            });
-          }),
-          catchError((error) => of(new LabelsActions.UpdateLabelFailure(error)))
-        )
-    )
-  );
-
-  @Effect()
-  deleteLabel = this.actions$.pipe(
-    ofType(LabelsActions.DELETE_LABEL_START),
-    mergeMap((label: LabelsActions.DeleteLabelStart) =>
-      this.http.delete(URL + 'labels/' + label.id + '.json').pipe(
-        map(() => new LabelsActions.DeleteLabelSuccess(label.id)),
-        catchError((error) => of(new LabelsActions.DeleteLabelFailure(error)))
-      )
-    )
-  );
-
   constructor(
     private actions$: Actions,
     private http: HttpClient,

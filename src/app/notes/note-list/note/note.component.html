@@ -2,7 +2,7 @@
   class="panel panel-default"
   [formGroup]="noteEditForm"
   (ngSubmit)="onSave()"
-  [ngClass]="isDone? 'note-done' : null"
+  [ngClass]="isDone ? 'note-done' : null"
 >
   <header class="panel-heading">
     <p *ngIf="!isEditMode">
@@ -40,6 +40,11 @@
         id="newDescription"
         formControlName="newDescription"
       ></textarea>
+      <select class="form-control" id="newLabel" formControlName="newLabel">
+        <option *ngFor="let label of labels" [ngValue]="label">
+          {{ label.title }}
+        </option>
+      </select>
     </div>
     <div style="justify-content: center; margin: 10px 0" *ngIf="isEditMode">
       <button class="btn-success btn" type="submit">Save</button>
@@ -51,20 +56,27 @@
       (click)="!isEditMode ? onEdit() : onClose()"
       type="button"
     >
-      {{ isEditMode ? "Close" : "Edit" }}
+      {{ isEditMode ? 'Close' : 'Edit' }}
     </button>
     <div class="status-wrapper">
+      <span
+        class="label-color"
+        [ngStyle]="{ 'background-color': label.color }"
+      ></span>
+      <span>{{ label.title }}</span>
+    </div>
+    <div class="status-wrapper">
       <input
-      (value)="isDone"
-      id="newIsDone"
-      formControlName="newIsDone"
-      class="form-control"
-      type="checkbox"
-      (click)="onStatusChange()"
-    />
-    <label for="newIsDone" [ngClass]="isDone ? 'text-success' : null ">
-      {{ isDone ? "Done" : "To do" }}
-    </label>
+        (value)="(isDone)"
+        id="newIsDone"
+        formControlName="newIsDone"
+        class="form-control"
+        type="checkbox"
+        (click)="onStatusChange()"
+      />
+      <label for="newIsDone" [ngClass]="isDone ? 'text-success' : null">
+        {{ isDone ? 'Done' : 'To do' }}
+      </label>
     </div>
     <button class="btn-danger btn" type="button" (click)="onDelete()">
       Delete

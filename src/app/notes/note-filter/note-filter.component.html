@@ -20,9 +20,31 @@
         align-items: baseline;
       "
     >
-      <label for="description">Status</label>
+      <label for="label">Label</label>
       <select
-        id="status"
+        id="label"
+        formControlName="label"
+        class="form-control"
+        style="width: 60%"
+        (change)="onLabelChange()"
+      >
+        <option value="all">All</option>
+        <option *ngFor="let label of labels" [ngValue]="label">
+          {{ label.title }}
+        </option>
+      </select>
+    </div>
+    <div
+      class="form-group"
+      style="
+        width: 30%;
+        display: flex;
+        justify-content: space-around;
+        align-items: baseline;
+      "
+    >
+      <label for="status">Status</label>
+      <select
         formControlName="status"
         id="status"
         class="form-control"

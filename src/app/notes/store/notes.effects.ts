@@ -40,12 +40,14 @@ export class NotesEffects {
         .post(URL + "notes.json", {
           title: note.payload.title,
           description: note.payload.description,
+          label: note.payload.label,
         })
         .pipe(
           map((res: { name: string }) => {
             return new NotesActions.AddNoteSuccess({
               title: note.payload.title,
               description: note.payload.description,
+              label: note.payload.label,
               id: res.name,
               isDone: false,
             });
@@ -63,6 +65,7 @@ export class NotesEffects {
         .put(URL + "notes/" + note.id + ".json", {
           title: note.newNote.title,
           description: note.newNote.description,
+          label: note.newNote.label,
           isDone: note.newNote.isDone,
         })
         .pipe(

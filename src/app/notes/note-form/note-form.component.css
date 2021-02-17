@@ -5,3 +5,14 @@ input.ng-invalid.ng-touched {
 textarea#description {
   resize: none;
 }
+
+.label-wrapper {
+  display: flex;
+}
+
+.label-color {
+  width: 34px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 16px;
+}

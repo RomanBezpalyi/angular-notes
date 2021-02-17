@@ -31,12 +31,4 @@ export class LabelsTableComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.labelSub.unsubscribe();
   }
-
-  onEdit(id: string) {
-    this.store.dispatch(new LabelsActions.PutLabelToEditMode(id));
-  }
-
-  onDelete(id: string) {
-    this.store.dispatch(new LabelsActions.DeleteLabelStart(id));
-  }
 }

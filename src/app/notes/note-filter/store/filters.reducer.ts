@@ -1,13 +1,15 @@
-import * as FiltersActions from "./filters.actions";
+import * as FiltersActions from './filters.actions';
 
 export interface FiltersState {
   query: string;
   status: string;
+  label: any;
 }
 
 const initialState = {
-  query: "",
-  status: "all",
+  query: '',
+  status: 'all',
+  label: 'all',
 };
 
 export function filtersReducer(
@@ -24,6 +26,11 @@ export function filtersReducer(
       return {
         ...state,
         status: action.payload,
+      };
+    case FiltersActions.SET_LABEL_FILTER:
+      return {
+        ...state,
+        label: action.payload,
       };
     default:
       return state;

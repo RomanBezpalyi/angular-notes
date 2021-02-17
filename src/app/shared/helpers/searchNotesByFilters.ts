@@ -1,9 +1,10 @@
-import { Note } from "../../notes/models";
+import { Note } from '../../notes/models';
 
 export const searchNotesByFilters = (
   notes: Note[],
   query: string,
-  status: string
+  status: string,
+  label: any
 ) => {
   let filteredNotes = [...notes];
 
@@ -16,12 +17,17 @@ export const searchNotesByFilters = (
     });
   }
 
+  if (label !== 'all') {
+    const { id } = label;
+    filteredNotes = filteredNotes.filter((note: Note) => note.label === id);
+  }
+
   switch (status) {
-    case "true":
+    case 'true':
       return filteredNotes.filter((note: Note) => !!note.isDone);
-    case "false":
+    case 'false':
       return filteredNotes.filter((note: Note) => !note.isDone);
-    case "all":
+    case 'all':
     default:
       return filteredNotes;
   }
